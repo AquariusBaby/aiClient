@@ -1,0 +1,76 @@
+{
+  "name": "demo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "ahooks": "^3.7.6",
+    "antd-mobile": "^5.29.1",
+    "antd-mobile-icons": "^0.3.0",
+    "axios": "^1.4.0",
+    "blueimp-md5": "^2.19.0",
+    "classnames": "^2.3.2",
+    "clipboard": "^2.0.11",
+    "dayjs": "^1.11.7",
+    "FileReader": "^0.10.2",
+    "highlight.js": "^11.8.0",
+    "immer": "^10.0.1",
+    "isomorphic-fetch": "^3.0.0",
+    "markdown-it": "^13.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "5.0.1",
+    "remarkable": "^2.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "mock": "node mockServer"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5",
+    "sass": "^1.62.1",
+    "@traptitech/markdown-it-katex": "^3.6.0",
+    "@types/clipboard": "^2.0.7",
+    "@types/isomorphic-fetch": "0.0.36",
+    "@types/markdown-it": "^12.2.3",
+    "@types/markdown-it-link-attributes": "^3.0.1",
+    "@types/remarkable": "^2.0.3",
+    "compression": "^1.7.4",
+    "express": "^4.18.2",
+    "markdown-it-link-attributes": "^4.0.1",
+    "serve": "^14.2.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/blueimp-md5": "^2.18.0",
+    "@types/jest": "^27.5.2",
+    "@types/marked": "^4.3.0",
+    "@types/node": "^16.18.25",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.1",
+    "@types/react-router-dom": "^5.2.0"
+  },
+  "proxy": "http://www.zg-gpt.com"
+}

@@ -1,0 +1,31 @@
+.customUploadBtn {
+    height: 5.8rem;
+    width: 5.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+    line-height: 5.8rem;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+.formContent {
+    position: relative;
+    height: 37rem;
+    // width: 30rem;
+}
+.footer  {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn {
+        font-size: 1.4rem;
+        color: #333;
+    }
+    .saveBtn {
+        font-size: 1.4rem;
+        color: #fff;
+    }
+}

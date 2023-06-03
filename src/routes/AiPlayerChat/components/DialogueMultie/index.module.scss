@@ -1,0 +1,74 @@
+
+.dialogueWrap {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    &.forAi {
+        padding-right: 2rem;
+        .avatar {
+            margin-right: 1rem;
+        }
+        .content {
+            .descWrap {
+                position: relative;
+                .refreshIcon {
+                    position: absolute;
+                    right: -1.8rem;
+                    bottom: 2.2rem;
+                    font-size: 1.4rem;
+                    color: #999;
+                }
+                .expandIcon {
+                    position: absolute;
+                    right: -1.8rem;
+                    bottom: 0.2rem;
+                    font-size: 1.4rem;
+                    color: #999;
+                }
+            }
+        }
+    }
+    &.forUser {
+        padding-left: 2rem;
+        flex-direction:row-reverse;
+        .avatar {
+            margin-left: 1rem;
+        }
+        .content {
+            .date {
+                text-align: right;
+            }
+        }
+    }
+    .avatar {
+        min-width: 4rem;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+    .content {
+        // flex: 1;
+        // overflow-wrap: break-word;
+        font-size: 1.4rem;
+        // padding: 0.8rem;
+        // width: 29rem;
+        max-width: 29rem;
+        .date {
+            line-height: 2rem;
+            font-size: 1.2rem;
+            color: rgb(180 187 196);
+        }
+        .desc {
+            margin-top: 0.5rem;
+            // width: 100%;
+            padding: 0.8rem;
+            background-color: rgb(244 246 248);
+            border-radius: 0.5rem;
+            // padding: 0.5rem;
+            line-height: 1.625;
+            overflow-wrap: break-word;
+            // overflow-wrap: break-word;
+        }
+    }
+}

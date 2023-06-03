@@ -1,0 +1,76 @@
+.historyTopicWrap {
+    width: 23rem;
+    height: 100%;
+    background-color: #fff;
+    .handle {
+        padding-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .createTopic {
+            margin-right: 0.8rem;
+            flex: 1;
+            height: 3.4rem;
+            // line-height: 3.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .iconHandle {
+            padding: 0.8rem;
+            background-color: #dedede;
+            border-radius: 50%;
+            .closeMessageIcon {
+                font-size: 1.8rem;
+            }
+        }
+        
+    }
+    .topicList {
+        overflow-y: scroll;
+        .topicItem {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            height: 3.8rem;
+            padding: 0 1.5rem;
+            &.selected {
+                background-color: #e6e6e6;
+                border-radius: 1.8rem;
+                .messageIcon, .topicName {
+                    color: #1677ff;
+                }
+            }
+            .messageIcon {
+                margin-right: 1rem;
+                font-size: 2rem;
+                color: #444;
+            }
+            .topicName {
+                margin-right: 1rem;
+                flex: 1;
+                font-size: 1.4rem;
+            }
+            .topicInput {
+                margin-right: 1rem;
+                padding: 0 0.5rem;
+                border-radius: 0.5rem;
+                border: 1px solid #dedede;
+                height: 2.2rem;
+                background-color: #fff;
+                > input {
+                    font-size: 1.3rem;
+                }
+            }
+            .editIcon {
+                margin-right: 0.7rem;
+                font-size: 1.4rem;
+                color: #444;
+            }
+            .delIcon {
+                font-size: 1.4rem;
+                color: #444;
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.roleInfoWrap {
+    width: 23rem;
+    .title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #000;
+        line-height: 2.2rem;
+    }
+    .item {
+        font-size: 1.4rem;
+        // font-weight: bold;
+        color: #333;
+        line-height: 2rem;
+        text-align: justify;
+    }
+    .link {
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        // justify-content: space-between;
+    }
+}

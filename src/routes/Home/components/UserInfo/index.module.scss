@@ -1,0 +1,28 @@
+
+
+.userBtn {
+    // width: 11rem;
+    // height: 3.2rem;
+    // font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .icon {
+        margin-left: 0.3rem;
+        font-size: 1.4rem;
+    }
+}
+.userInfoWrap {
+    // height: 40rem;
+    --min-width: 80%;
+    --max-width: 850px;
+    .userInfoContent {
+        position: relative;
+        height: 50rem;
+        // width: 31rem;
+        // font-size: 1.4rem !important;
+        .tabItem {
+            --title-font-size: 1.4rem;
+        }
+    }
+}

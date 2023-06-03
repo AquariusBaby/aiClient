@@ -1,0 +1,17 @@
+{
+  "message": "",
+  "status": "Success",
+  "code": 0,
+  "data": {
+    "id": 17018,
+    "name": "用户7139",
+    "email": "",
+    "phone": "18372667139",
+    "theme": "light",
+    "language": "zh-CN",
+    "avatar": "",
+    "is_admin": 0,
+    "daily_free_chat_num": 100,
+    "share_free_chat_num": 0
+  }
+}

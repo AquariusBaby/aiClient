@@ -1,0 +1,37 @@
+{
+  "message": "",
+  "status": "Success",
+  "code": 0,
+  "data": [
+    {
+      "id": 1620932,
+      "uuid": "chatcmpl-7AIOvzmoJoQ2tiUaCarUCR293o6PR",
+      "dateTime": "2023-04-28 21:26:23",
+      "text": "以下是几个建议如何在面试时留下一个好印象：\n\n1. 准备充分：在面试前，了解公司以及相关岗位的要求，并准备好自己的简历和相关资料。更好的准备能够让你在面试中表现更加自信。\n\n2. 着装得体：在面试中，穿着合适、整洁的服装可以让你看起来更加专业和有信心。\n\n3. 注意聆听：在面试中，认真聆听面试官的问题并且回答清晰明了，同时展示自己的思考能力和逻辑思维能力。\n\n4",
+      "inversion": false,
+      "is_sensitive": 0,
+      "error": false,
+      "loading": false,
+      "conversationOptions": { "parentMessageId": "1682687868723" },
+      "requestOptions": {
+        "prompt": "以下是几个建议如何在面试时留下一个好印象：\n\n1. 准备充分：在面试前，了解公司以及相关岗位的要求，并准备好自己的简历和相关资料。更好的准备能够让你在面试中表现更加自信。\n\n2. 着装得体：在面试中，穿着合适、整洁的服装可以让你看起来更加专业和有信心。\n\n3. 注意聆听：在面试中，认真聆听面试官的问题并且回答清晰明了，同时展示自己的思考能力和逻辑思维能力。\n\n4",
+        "parentMessageId": "1682687868723"
+      }
+    },
+    {
+      "id": 1620924,
+      "uuid": "1682687868723",
+      "dateTime": "2023-04-28 21:26:09",
+      "text": "如何在面试时留下一个好印象？",
+      "inversion": true,
+      "is_sensitive": 0,
+      "error": false,
+      "loading": false,
+      "conversationOptions": { "parentMessageId": "" },
+      "requestOptions": {
+        "prompt": "如何在面试时留下一个好印象？",
+        "parentMessageId": ""
+      }
+    }
+  ]
+}

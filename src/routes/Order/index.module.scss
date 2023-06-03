@@ -1,0 +1,31 @@
+.orderWrap {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    transform: translate(-50%, -50%);
+
+    .successIcon,
+    .searchIcon {
+        font-size: 6rem;
+        // color: chocolate;
+        color: #1677ff;
+    }
+
+    .errorIcon {
+        font-size: 6rem;
+        color: chocolate;
+    }
+
+    .orderStatus {
+        margin: 2rem 0;
+        font-size: 2rem;
+        color: #1677ff;
+    }
+
+    .goHome {
+        width: 18rem;
+    }
+}

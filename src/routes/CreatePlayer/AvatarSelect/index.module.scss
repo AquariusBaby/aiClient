@@ -1,0 +1,44 @@
+.AvatarSelectWrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .avatarItem {
+        margin: 0 1.2rem 0.6rem 0;
+        height: 4.8rem;
+        width: 4.8rem;
+        border-radius: 50%;
+        overflow: hidden;
+        line-height: 4.8rem;
+        text-align: center;
+
+        &.custom {
+            border: 1px dashed #735eae;
+        }
+
+        &.selected {
+            &::after {
+                border: 1px solid rgb(102, 71, 255);
+            }
+        }
+
+        .customUploadBtn {
+            height: 4.8rem;
+            width: 4.8rem;
+            border-radius: 50%;
+            overflow: hidden;
+            line-height: 4.8rem;
+            text-align: center;
+            background-color: #f5f5f5;
+            font-size: 2rem;
+        }
+
+        .input {
+            width: 4.8rem;
+            background: none;
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    }
+}

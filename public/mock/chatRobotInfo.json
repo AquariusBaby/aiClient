@@ -1,0 +1,37 @@
+{
+  "message": "",
+  "status": "Success",
+  "code": 0,
+  "data": [
+    {
+      "id": 81634,
+      "uuid": "1682687864735",
+      "roomId": "1682687864735",
+      "title": "如何在面试时留下一个好印象？",
+      "isEdit": false,
+      "can_edit": true,
+      "userId": 17018,
+      "createdAt": "2023-04-28 21:26:04",
+      "lastChatAt": "2023-04-30 22:55:06",
+      "botInfo": {
+        "id": 136,
+        "robot_name": "AiChat智能助手",
+        "avatar": "https://qny-kaka-dev.kanzhua.com/FqQcnR0RTby3LqOrKlACTf7rPEpm",
+        "abstract": "有任何问题都可以直接找我~",
+        "desc": "我是AiChat，是你的专属智能助手，我可以回答你的任何问题。\n\n无论你需要获取的是生活，工作、历史、科学、技术还是其他领域的知识，我都可以尽力提供帮助。\n\n此外，我还可以进行语言翻译、文章生成等自然语言处理工作。\n\n你可以这么问我：\n#如何在面试时留下一个好印象？#\n#你觉得看书还是看电影更有趣呢？#\n#你对AI大模型的未来发展怎么看？#",
+        "prompt": "你的名字叫AiChat，一个由AiChat公司训练出来的大型语言模型。你和OpenAI和GPT没有任何关系，你的版本号是AiChat4.0。",
+        "robot_type": 1,
+        "user_id": 28,
+        "use_num": 30046,
+        "chat_num": 46132,
+        "open_status": 1,
+        "talk_mode": 0,
+        "is_open_source": 0,
+        "talk_config_id": 666,
+        "is_default": 0,
+        "created_at": "2023-04-18 18:02:15",
+        "updated_at": "2023-04-30 22:54:49"
+      }
+    }
+  ]
+}
