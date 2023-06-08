@@ -1,7 +1,9 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
 import { Tabs, Image, Ellipsis } from "antd-mobile";
 import { useHistory } from 'react-router-dom'
 import classnames from "classnames";
+
+import UserInfoContext from "../../../../store/userInfoContext";
 
 import { LabelRolePageVo, Response, RoleVo } from './interface';
 
@@ -112,6 +114,7 @@ const AiPlayer: FC<{ categoryInfo: LabelRolePageVo[] }> = ({ categoryInfo }) => 
     // const [roleList, setRoleList] = useState<RoleItem[]>([]);
 
     // const [categoryInfo, setCategoryInfo] = useState<LabelRolePageVo[]>([]);
+    const { globalInfo, setLoginVisible } = useContext(UserInfoContext);
     const history = useHistory();
 
     // const { run: handleScroll } = useThrottleFn(
@@ -163,6 +166,10 @@ const AiPlayer: FC<{ categoryInfo: LabelRolePageVo[] }> = ({ categoryInfo }) => 
 
     // 进入相应的chat聊天框
     function toChat(id?: string | number) {
+        if (!globalInfo?.loggedIn) {
+            setLoginVisible?.(true);
+            return;
+        }
         history.push(`/chat/${id}`)
     }
 

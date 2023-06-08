@@ -82,22 +82,24 @@ const RightExpand: FC<RightExpandProps> = ({ roleId }) => {
                 position='right'
                 className={styles.roleInfoPopWrap}
             >
-                <div className={styles.roleInfo}>
-                    <Image className={styles.avatar} src={roleInfo?.imgUrl || defaultAiAvatar} />
-                    <div className={styles.info}>
-                        <p className={styles.name}>{roleInfo?.name}</p>
-                        <Ellipsis className={styles.desc} content={roleInfo?.summary} />
+                <div className={styles.roleInfoPopContainer}>
+                    <div className={styles.roleInfo}>
+                        <Image className={styles.avatar} src={roleInfo?.imgUrl || defaultAiAvatar} />
+                        <div className={styles.info}>
+                            <p className={styles.name}>{roleInfo?.name}</p>
+                            <Ellipsis className={styles.desc} content={roleInfo?.summary} />
+                        </div>
+                        <span className={styles.placeholder} />
                     </div>
-                    <span className={styles.placeholder} />
+                    <Tabs>
+                        <Tabs.Tab title='历史话题' key='fruits'>
+                            <HistoryTopic roleId={roleId} toggleChatItem={toggleChatItem} />
+                        </Tabs.Tab>
+                        <Tabs.Tab title='角色信息' key='vegetables'>
+                            <PlayerInfo roleId={roleId} roleInfo={roleInfo} />
+                        </Tabs.Tab>
+                    </Tabs>
                 </div>
-                <Tabs>
-                    <Tabs.Tab title='历史话题' key='fruits'>
-                        <HistoryTopic roleId={roleId} toggleChatItem={toggleChatItem} />
-                    </Tabs.Tab>
-                    <Tabs.Tab title='角色信息' key='vegetables'>
-                        <PlayerInfo roleId={roleId} roleInfo={roleInfo} />
-                    </Tabs.Tab>
-                </Tabs>
             </Popup>
         </>
     )

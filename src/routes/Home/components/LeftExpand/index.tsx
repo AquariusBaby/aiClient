@@ -19,14 +19,15 @@ const LeftExpand: FC = () => {
     const [createPlayerVisible, setCreatePlayerVisible] = useState<boolean>(false);
     const [playerList, setPlayerList] = useState<any[]>([]);
 
-    const { globalInfo = {} } = useContext(UserInfoContext);
+    const { globalInfo = {}, setLoginVisible } = useContext(UserInfoContext);
 
     useEffect(() => {
-        getUserFriends().then((res: any) => {
-            if (res.code !== 200) return;
-            setPlayerList(res?.data || []);
-        })
-    }, [])
+        globalInfo?.loggedIn &&
+            getUserFriends().then((res: any) => {
+                if (res.code !== 200) return;
+                setPlayerList(res?.data || []);
+            })
+    }, [globalInfo?.loggedIn])
 
     function handleCreatePlayer() {
         setVisible(false);
@@ -38,7 +39,12 @@ const LeftExpand: FC = () => {
             <i
                 className={classnames("icon iconfont icon-liebiao", styles.leftExpandIcon)}
                 onClick={() => {
-                    setVisible(true)
+                    if (!globalInfo?.loggedIn) {
+                        // 打开登录弹窗
+                        setLoginVisible?.(true);
+                        return;
+                    }
+                    setVisible(true);
                 }}
             />
             <Popup
@@ -53,12 +59,12 @@ const LeftExpand: FC = () => {
                     <Divider className={styles.line} />
                     <div className={styles.handle}>
                         <span className={styles.friend}>AI 好友</span>
-                        <Button fill='none' onClick={() => history.push('/')}>
+                        {/* <Button fill='none' onClick={() => history.push('/')}>
                             <Space>
                                 <i className="icon iconfont icon-find1" />
                                 发现
                             </Space>
-                        </Button>
+                        </Button> */}
                         <Button fill='none' onClick={() => history.push('/createRole/create')}>
                             <Space>
                                 <i className="icon iconfont icon-zengjia" />

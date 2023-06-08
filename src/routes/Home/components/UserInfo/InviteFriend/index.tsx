@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState, useContext } from 'react';
-import { Input, Button } from 'antd-mobile';
+import { Input, Button, Toast } from 'antd-mobile';
 import dayjs from 'dayjs';
 
 import CopyToClipboard from '../../../../../commonComp/CopyToClipboard';
@@ -16,7 +16,8 @@ const InviteFriend: FC = props => {
         count: number
     }[]>([]);
 
-    const { globalInfo } = useContext(UserInfoContext);
+
+    const { globalInfo, setGlobalInfo, setLoginVisible } = useContext(UserInfoContext);
 
     useEffect(() => {
 
@@ -26,6 +27,19 @@ const InviteFriend: FC = props => {
             count: 12
         }])
     }, []);
+
+    function loginOut() {
+        // 退出登录
+        Toast.show('退出成功!');
+        localStorage.removeItem('TOKEN');
+        setLoginVisible?.(false);
+
+        setGlobalInfo?.({
+            loggedIn: false,
+            finised: true,
+            // ...(res.data || {})
+        });
+    }
 
     return (
         <div className={styles.inviteFriendWrap}>
@@ -56,6 +70,10 @@ const InviteFriend: FC = props => {
                     )
                 }
             </ul> */}
+
+            <Button className={styles.loginOutBtn} onClick={loginOut}>
+                退出登录
+            </Button>
         </div>
     );
 };

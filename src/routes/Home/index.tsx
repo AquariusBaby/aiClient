@@ -45,7 +45,7 @@ const Home: FC = () => {
     const history = useHistory();
 
     const [createPlayerVisible, setCreatePlayerVisible] = useState<boolean>(false);
-    const { globalInfo } = useContext(UserInfoContext);
+    const { globalInfo, setLoginVisible } = useContext(UserInfoContext);
 
     const [categoryInfo, setCategoryInfo] = useState<LabelRolePageVo[]>([]);
 
@@ -74,6 +74,10 @@ const Home: FC = () => {
     }
 
     async function getDefaultRole() {
+        if (!globalInfo?.loggedIn) {
+            setLoginVisible?.(true);
+            return;
+        }
         const res: any = await getDefaultRoleInfo();
 
         res?.code === 200 && history.push(`/chat/${res?.data?.id}`);
@@ -98,7 +102,20 @@ const Home: FC = () => {
             <div className={styles.mainHandle}>
                 <Button color="primary" className={styles.chatBtn} onClick={getDefaultRole}>立即开聊</Button>
                 {/* <Button color="primary" className={styles.createBtn} onClick={() => setCreatePlayerVisible(true)}>创建AI角色</Button> */}
-                <Button color="primary" className={styles.createBtn} onClick={() => history.push('/createRole/create')}>创建AI角色</Button>
+                <Button
+                    color="primary"
+                    className={styles.createBtn}
+                    onClick={() => {
+                        if (!globalInfo?.loggedIn) {
+                            setLoginVisible?.(true);
+                            return;
+                        }
+                        history.push('/createRole/create')
+                    }
+                    }
+                >
+                    创建AI角色
+                </Button>
             </div>
 
             {/* AI 角色列表 */}

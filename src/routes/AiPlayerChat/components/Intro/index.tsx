@@ -28,12 +28,6 @@ function highlightBlock(str: any, lang: any) {
     return `<pre class="code-block-wrapper"><div class="code-block-header"><span class="code-block-header__lang">${lang}</span></div><code class="hljs code-block-body ${lang}">${str}</code></pre>`
 }
 
-// interface DialogueProps {
-//     aichat?: string | null;
-//     userchat?: string | null;
-//     time?: string;
-// }
-
 function renderMarkdownToHTML(markdown: string) {
     const text = markdown.replace(/(^\s*)|(\s*$)/g, '');
 
@@ -54,7 +48,7 @@ const Intro: FC<any> = ({ text, dateTime, avatar, setQuestionChat }) => {
                 <p className={styles.date}>{dateTime}</p>
                 <div className={classnames(styles.desc, 'markdown-body')} dangerouslySetInnerHTML={renderMarkdownToHTML(introText)} />
                 {
-                    actions?.length > 0 && actions.map((item: string, index: number) => 
+                    actions?.length > 0 && actions.map((item: string, index: number) =>
                         <li className={styles.action} key={index} onClick={() => setQuestionChat(item)}>{item}</li>
                     )
                 }

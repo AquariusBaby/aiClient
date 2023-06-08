@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { ImageUploader } from 'antd-mobile';
+import { ImageUploader, Toast, Image, Dialog } from 'antd-mobile';
 import { ImageUploadItem } from 'antd-mobile/es/components/image-uploader';
 import classnames from 'classnames';
 
@@ -32,17 +32,25 @@ const AvatarSelect: FC<AvatarSelectProps> = ({ value, onUpload }) => {
             // 创建 FileReader 对象
             const reader = new FileReader();
             // 读取文件内容，将其转换为 Base64
-            reader.onload = function(event: any) {
+            reader.onload = function (event: any) {
                 const base64String = event.target.result;
 
                 onUpload?.(base64String);
-                
+
                 res({
                     url: base64String,
                 })
             };
             reader.readAsDataURL(file);
-        })    
+        })
+    }
+
+    function beforeUpload(file: File) {
+        if (file.size > 1024 * 1024) {
+            Toast.show('请选择小于 1M 的图片')
+            return null
+        }
+        return file
     }
 
     function updateAvatarList(event: any, index: number) {
@@ -60,6 +68,13 @@ const AvatarSelect: FC<AvatarSelectProps> = ({ value, onUpload }) => {
                     upload={upload}
                     multiple={false}
                     maxCount={1}
+                    beforeUpload={beforeUpload}
+                    onDelete={() => {
+                        return Dialog.confirm({
+                            content: '是否确认删除',
+                        })
+                    }}
+                    className={styles.uploadBtn}
                 >
                     <div className={styles.customUploadBtn}>+</div>
                 </ImageUploader>

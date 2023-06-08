@@ -21,7 +21,7 @@ const UserInfo: FC<any> = ({ userInfo }) => {
                 onClick={() => setVisible(true)}
                 className={styles.userBtn}
             >
-                <span>{userInfo?.name}</span>
+                <span>用户{userInfo?.name}</span>
                 <i className={classnames("icon iconfont icon-icon-test17", styles.icon)} />
             </Button>
             <Modal

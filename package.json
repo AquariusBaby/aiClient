@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "ahooks": "^3.7.6",
     "antd-mobile": "^5.29.1",
     "antd-mobile-icons": "^0.3.0",
     "axios": "^1.4.0",
@@ -21,7 +20,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
     "remarkable": "^2.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@traptitech/markdown-it-katex": "^3.6.0",
+    "markdown-it-link-attributes": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,7 +52,6 @@
   "devDependencies": {
     "typescript": "^4.9.5",
     "sass": "^1.62.1",
-    "@traptitech/markdown-it-katex": "^3.6.0",
     "@types/clipboard": "^2.0.7",
     "@types/isomorphic-fetch": "0.0.36",
     "@types/markdown-it": "^12.2.3",
@@ -59,7 +59,6 @@
     "@types/remarkable": "^2.0.3",
     "compression": "^1.7.4",
     "express": "^4.18.2",
-    "markdown-it-link-attributes": "^4.0.1",
     "serve": "^14.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

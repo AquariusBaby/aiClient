@@ -1,9 +1,16 @@
-
 .historyIcon {
     font-size: 1.8rem;
 }
+
 .roleInfoPopWrap {
     width: 23rem;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.roleInfoPopContainer {
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .roleInfo {
@@ -11,24 +18,29 @@
     align-items: center;
     padding: 1.2rem;
     width: 23rem;
+
     .avatar {
         margin-right: 1rem;
         width: 4rem;
         height: 4rem;
         border-radius: 50%;
     }
+
     .info {
         flex: 1;
         font-size: 1.4rem;
+
         .name {
             color: #000;
             line-height: 2.2rem;
             font-weight: bold;
         }
+
         .desc {
             line-height: 2.2rem;
         }
     }
+
     .placeholder {
         width: 3rem;
     }

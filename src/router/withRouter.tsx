@@ -38,8 +38,9 @@ const PrivateRoute: FC<PrivateRouteProps> = ({ component: Component, ...rest }) 
             {...rest}
             render={props => {
                 // console.log(props, 'sss');
+                // if (!globalInfo?.finised) return null;
 
-                return globalInfo?.id && !shareUserId ? (
+                return globalInfo?.loggedIn && !shareUserId ? (
                     <Component {...props} />
                 ) : (
                     <Redirect

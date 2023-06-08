@@ -21,7 +21,6 @@ function RouterApp() {
             <Switch>
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/home" exact component={Home}></Route>
-                {/* <Route path="/chat/:roleId" exact component={AiPlayerChat}></Route> */}
                 <PrivateRoute path="/chat/:roleId" exact component={AiPlayerChat}></PrivateRoute>
                 <Route path="/vip-center" exact component={VipCenter}></Route>
                 <Route path="/createRole/create" exact component={CreatePlayer}></Route>

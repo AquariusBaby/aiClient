@@ -1,9 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
-import { TextOutline } from 'antd-mobile-icons'
+import { TextOutline } from 'antd-mobile-icons';
+import classnames from 'classnames';
 
-import { Divider, Modal, Toast, } from 'antd-mobile';
+import { Divider, Modal, Toast, Space } from 'antd-mobile';
 
 import CopyToClipboard from '../../../../commonComp/CopyToClipboard';
+import renderMarkdownToHTML from '../../../../commonComp/RenderMarkdownToHTML';
 
 import styles from './index.module.scss';
 
@@ -57,36 +59,8 @@ function findIndex(num: number): string {
 
 const PlayerInfo: FC<PlayerInfoProps> = ({ roleId, roleInfo }) => {
 
-
-    // const [roleInfo, setRoleInfo] = useState<RoleInfoProps>({
-    //     dialogue: 'SINGLE'
-    // });
-
-    // useEffect(() => {
-    //     roleId && getRoleInfo({
-    //         roleId
-    //     }).then((res) => {
-    //         setRoleInfo(res?.data || {})
-    //     })
-    // }, [roleId]);
-
-    function copyLink(e: React.MouseEvent<HTMLDivElement>) {
-        e.stopPropagation();
-        Modal.alert({
-            title: '分享改角色',
-            closeOnMaskClick: true,
-            content: <>
-                <p>给你分享一个AI角色【{roleInfo?.name}】</p>
-                <a href={window.location.href}>{window.location.href}</a>
-            </>,
-            showCloseButton: true,
-            confirmText: <CopyToClipboard className={styles.copyBtn} text={window.location.href} copyBtnText="复制链接" />,
-            onConfirm: () => {
-                // const bool = document.execCommand('copy', window.location.href);
-                // bool && Toast.show({ content: '复制成功' });
-            }
-        })
-    }
+    const introText = roleInfo?.introduce?.split('#')?.[0];
+    const actions = roleInfo?.introduce?.split('#')?.slice(1)?.filter((item: string) => item !== '\n' && item.length > 0) || [];
 
     return (
         <div className={styles.roleInfoWrap}>
@@ -99,9 +73,14 @@ const PlayerInfo: FC<PlayerInfoProps> = ({ roleId, roleInfo }) => {
             <Divider />
 
             <strong className={styles.title}>角色分享链接</strong>
-            <div className={styles.link} onClick={copyLink}>
-                <a href={window.location.href}>{window.location.href}</a>
-                <TextOutline />
+            <div className={styles.link}>
+                <CopyToClipboard text={window.location.href} copyBtnText={
+                    <Space className={styles.copyLink}>
+                        <p>{window.location.href}</p>
+                        <TextOutline />
+                    </Space>
+                } />
+
             </div>
 
             <Divider />
@@ -112,7 +91,13 @@ const PlayerInfo: FC<PlayerInfoProps> = ({ roleId, roleInfo }) => {
             <Divider />
 
             <strong className={styles.title}>使用介绍</strong>
-            <p className={styles.item}>{roleInfo?.introduce}</p>
+
+            <div className={classnames(styles.desc, 'markdown-body')} dangerouslySetInnerHTML={renderMarkdownToHTML(introText)} />
+            {
+                actions?.length > 0 && actions.map((item: string, index: number) =>
+                    <li className={styles.action} key={index}>{item}</li>
+                )
+            }
         </div>
     );
 };

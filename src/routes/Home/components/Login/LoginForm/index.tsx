@@ -25,9 +25,6 @@ const LoginForm: FC<LoginFormProps> = ({ setIsEditPwd, setLoginVisible, updateCa
         //   content: <pre>{JSON.stringify(values, null, 2)}</pre>,
         // })
         // console.log(values, 'values');
-        console.log(values.passWord, typeof values.passWord, md5(values.passWord), 'sss');
-
-        return;
 
         const res: any = await loginOrRegister({
             phone: values.phone,
@@ -35,24 +32,53 @@ const LoginForm: FC<LoginFormProps> = ({ setIsEditPwd, setLoginVisible, updateCa
             shareUserId
         });
 
-        // 登录成功
-        if (res.code === 200) {
-            Toast.show('登录成功!')
-            localStorage.setItem('TOKEN', res?.data?.jwtToken);
-            setLoginVisible(false);
-
-            // 获取用户信息，并存入store
-            getUserInfo().then((res: any) => {
-                if (res.code !== 200) {
-                    return;
-                }
-                setGlobalInfo?.(res.data || {});
-                // 更新分类
-                updateCategoryInfo();
-            })
+        // 登录失败
+        if (res.code !== 200 || res.message !== null) {
+            Toast.show(res?.message || '网络错误');
+            setGlobalInfo?.({
+                loggedIn: false,
+                finised: true,
+                // ...(res.data || {})
+            });
+            return;
         }
 
+        // 登录成功
+        Toast.show('登录成功!');
+        localStorage.setItem('TOKEN', res?.data?.jwtToken);
+        setLoginVisible(false);
 
+        // 获取用户信息，并存入store
+        getUserInfo().then((res: any) => {
+            if (res.code !== 200 || res.message !== null) {
+                return;
+            }
+            // setGlobalInfo?.(res.data || {});
+            setGlobalInfo?.({
+                loggedIn: true,
+                finised: true,
+                ...(res.data || {})
+            });
+            // 更新分类
+            updateCategoryInfo();
+        })
+
+
+        // if (res.code === 200) {
+        //     Toast.show('登录成功!')
+        //     localStorage.setItem('TOKEN', res?.data?.jwtToken);
+        //     setLoginVisible(false);
+
+        //     // 获取用户信息，并存入store
+        //     getUserInfo().then((res: any) => {
+        //         if (res.code !== 200) {
+        //             return;
+        //         }
+        //         setGlobalInfo?.(res.data || {});
+        //         // 更新分类
+        //         updateCategoryInfo();
+        //     })
+        // }
     }
 
     return (
