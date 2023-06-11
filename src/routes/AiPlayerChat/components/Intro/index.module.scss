@@ -1,48 +1,58 @@
-
 .dialogueWrap {
     margin-bottom: 2rem;
     display: flex;
     align-items: flex-start;
     background-color: #fff;
+
     &.forAi {
         padding-right: 2rem;
+
         .avatar {
             margin-right: 1rem;
         }
     }
+
     .avatar {
         min-width: 4rem;
         width: 4rem;
         height: 4rem;
         border-radius: 50%;
     }
+
     .content {
         font-size: 1.4rem;
         max-width: 29rem;
-        background-color: rgb(244, 246, 248);
+
         .date {
             line-height: 2rem;
             font-size: 1.2rem;
             color: rgb(180 187 196);
         }
-        .desc {
-            margin-top: 0.5rem;
-            // width: 100%;
-            padding: 0.8rem;
-            background-color: rgb(244 246 248);
+
+        .text {
+            background-color: rgb(244, 246, 248);
             border-radius: 0.5rem;
-            // padding: 0.5rem;
-            line-height: 1.625;
-            overflow-wrap: break-word;
-            // overflow-wrap: break-word;
-            // word-wrap: break-word;
+            padding: 0.8rem 0;
+
+            .desc {
+                // margin-top: 0.5rem;
+                // width: 100%;
+                padding: 0 0.8rem;
+                background-color: rgb(244 246 248);
+                border-radius: 0.5rem;
+                // padding: 0.5rem;
+                line-height: 1.625;
+                overflow-wrap: break-word;
+            }
+
+            .action {
+                padding: 0 0.8rem;
+                margin: 0.25rem;
+                font-size: 1.4rem;
+                color: #0969da;
+                line-height: 2.2rem;
+            }
         }
-        .action {
-            padding: 0 0.8rem;
-            margin: 0.25rem;
-            font-size: 1.4rem;
-            color: #0969da;
-            line-height: 2.2rem;
-        }
+
     }
 }

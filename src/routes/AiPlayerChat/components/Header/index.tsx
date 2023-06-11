@@ -23,23 +23,9 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ chatName, roleId, setChatMessageVos, roleInfo }) => {
 
     const [visible, setVisible] = useState(false);
-    const { globalInfo } = useContext(UserInfoContext);
-
+    const { globalInfo, leftExpandVisible, setLeftExpandVisible, rightExpandVisible, setRightExpandVisible } = useContext(UserInfoContext);
 
     function share() {
-        // Modal.confirm({
-        //     title: '分享该角色1',
-        //     content: <>
-        //         <p>给你分享一个角色【{roleInfo?.name}】</p>
-        //         <a href={window.location.href}>{window.location.href}</a>
-        //     </>,
-        //     closeOnMaskClick: true,
-        //     // confirmText: '复制链接',
-        //     confirmText: <CopyToClipboard className={styles.copyBtn} text={window.location.href} copyBtnText="复制链接" />,
-        //     onConfirm: () => console.log(),
-        //     cancelText: null,
-        //     // showCloseButton,
-        // })
         setVisible(true);
     }
 
@@ -47,12 +33,12 @@ const Header: FC<HeaderProps> = ({ chatName, roleId, setChatMessageVos, roleInfo
         <>
             <NavBar
                 className={styles.navBarWrap}
-                back={<LeftExpand />}
+                back={<LeftExpand visible={leftExpandVisible} setVisible={setLeftExpandVisible} />}
                 backArrow={false}
                 right={
                     <>
                         <i className={classnames("icon iconfont icon-fenxiang", styles.shareIcon)} onClick={share} />
-                        <RightExpand roleId={roleId} />
+                        <RightExpand roleId={roleId} visible={rightExpandVisible} setVisible={setRightExpandVisible} />
                     </>
                 }
             >{roleInfo?.name}</NavBar>

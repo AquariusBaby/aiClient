@@ -23,6 +23,14 @@ const UserInfoContext = createContext<{
     setGlobalInfo?: (v: any) => void;
     loginVisible?: boolean;
     setLoginVisible?: (v: boolean) => void;
-}>({});
+    devicePlatform?: number;
+    leftExpandVisible: boolean;
+    rightExpandVisible: boolean;
+    setLeftExpandVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+    setRightExpandVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+    leftExpandVisible: false,
+    rightExpandVisible: false,
+});
 
 export default UserInfoContext;

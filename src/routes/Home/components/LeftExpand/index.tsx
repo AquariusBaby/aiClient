@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState, useContext } from "react";
 import { Popup, Divider, List, Image, Button, Space, Ellipsis } from 'antd-mobile';
 import classnames from "classnames";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import CreatePlayer from '../../../CreatePlayer';
 
@@ -9,17 +9,26 @@ import { getUserFriends } from '../../../../api/mineService';
 
 import UserInfoContext from "../../../../store/userInfoContext";
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 
-const LeftExpand: FC = () => {
+interface LeftExpandProps {
+    visible: boolean,
+    // setVisible?: (v: boolean) => void;
+    setVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LeftExpand: FC<LeftExpandProps> = ({ visible, setVisible }) => {
 
     const history = useHistory();
+    const { roleId }: { roleId?: string } = useParams();
 
-    const [visible, setVisible] = useState<boolean>(false);
+    // const [visible, setVisible] = useState<boolean>(false);
     const [createPlayerVisible, setCreatePlayerVisible] = useState<boolean>(false);
     const [playerList, setPlayerList] = useState<any[]>([]);
 
-    const { globalInfo = {}, setLoginVisible } = useContext(UserInfoContext);
+    const { globalInfo = {}, setLoginVisible, devicePlatform } = useContext(UserInfoContext);
+
+    const rootDom = document.getElementById('root')
 
     useEffect(() => {
         globalInfo?.loggedIn &&
@@ -30,84 +39,84 @@ const LeftExpand: FC = () => {
     }, [globalInfo?.loggedIn])
 
     function handleCreatePlayer() {
-        setVisible(false);
+        setVisible?.(false);
         setCreatePlayerVisible(true);
     }
 
     return (
         <>
             <i
-                className={classnames("icon iconfont icon-liebiao", styles.leftExpandIcon)}
+                className={classnames(`icon iconfont ${visible ? 'icon-List-1' : 'icon-liebiao'}`, styles.leftExpandIcon)}
                 onClick={() => {
                     if (!globalInfo?.loggedIn) {
                         // 打开登录弹窗
                         setLoginVisible?.(true);
                         return;
                     }
-                    setVisible(true);
+                    setVisible?.(c => !c);
                 }}
             />
             <Popup
                 visible={visible}
+                mask={devicePlatform === 1}
                 onMaskClick={() => {
-                    setVisible(false)
+                    setVisible?.(false)
                 }}
                 position='left'
+            // getContainer={rootDom}
             >
-                <div className={styles.expandContent}>
-                    <h2 className={styles.title} onClick={() => history.push('/')}>Cn-Gpt</h2>
-                    <Divider className={styles.line} />
-                    <div className={styles.handle}>
-                        <span className={styles.friend}>AI 好友</span>
-                        {/* <Button fill='none' onClick={() => history.push('/')}>
-                            <Space>
-                                <i className="icon iconfont icon-find1" />
-                                发现
-                            </Space>
-                        </Button> */}
-                        <Button fill='none' onClick={() => history.push('/createRole/create')}>
-                            <Space>
-                                <i className="icon iconfont icon-zengjia" />
-                                创建
-                            </Space>
-                        </Button>
-                    </div>
-                    <List>
-                        {Array.isArray(playerList) && playerList?.map(player => (
-                            <List.Item
-                                key={player.id}
-                                prefix={
-                                    <Image
-                                        src={player?.imgUrl || 'https://qny-kaka-dev.kanzhua.com/FqQcnR0RTby3LqOrKlACTf7rPEpm?imageMogr2/thumbnail/120x/crop/120x120'}
-                                        style={{ borderRadius: 20 }}
-                                        fit='cover'
-                                        width={40}
-                                        height={40}
-                                    />
-                                }
-                                // description={player?.introduce}
-                                description={<Ellipsis rows={1} content={player?.introduce} />}
-                                onClick={() => {
-                                    setVisible(false);
-                                    history.push(`/chat/${player.id}`)
-                                }}
-                            >
-                                {player?.name}
-                            </List.Item>
-                        ))}
-                    </List>
-                    <div className={styles.useInfo}>
-                        <Image
-                            src={globalInfo.avatar || 'https://c.aichat.la/default-avatar.png'}
-                            style={{ borderRadius: 20 }}
-                            fit='cover'
-                            width={40}
-                            height={40}
-                        />
-                        <span className={styles.name}>{globalInfo?.name}</span>
-                        {/* <Button fill='none'>
+                <div className={styles.expandContentWrap}>
+                    <div className={styles.expandContent}>
+                        <h2 className={styles.title} onClick={() => history.push('/')}>Cn-Gpt</h2>
+                        <Divider className={styles.line} />
+                        <div className={styles.handle}>
+                            <span className={styles.friend}>AI 好友</span>
+                            <Button fill='none' onClick={() => history.push('/createRole/create')}>
+                                <div className={styles.handleBtn}>
+                                    <i className={classnames("icon iconfont icon-zengjia", styles.handleBtnIcon)} />
+                                    <span>创建</span>
+                                </div>
+                            </Button>
+                        </div>
+                        <List className={styles.playerList}>
+                            {Array.isArray(playerList) && playerList?.map(player => (
+                                <List.Item
+                                    key={player.id}
+                                    className={classnames(styles.playerItem, { [styles.active]: roleId === String(player.id) })}
+                                    prefix={
+                                        <Image
+                                            src={player?.imgUrl || 'https://qny-kaka-dev.kanzhua.com/FqQcnR0RTby3LqOrKlACTf7rPEpm?imageMogr2/thumbnail/120x/crop/120x120'}
+                                            style={{ borderRadius: 20 }}
+                                            fit='cover'
+                                            width={40}
+                                            height={40}
+                                        />
+                                    }
+                                    // description={player?.introduce}
+                                    description={<Ellipsis className={styles.desc} rows={1} content={player?.summary} />}
+                                    onClick={() => {
+                                        setVisible?.(false);
+                                        history.push(`/chat/${player.id}`)
+                                    }}
+                                    arrow={false}
+                                >
+                                    {player?.name}
+                                </List.Item>
+                            ))}
+                        </List>
+                        <div className={styles.useInfo}>
+                            <Image
+                                src={globalInfo.avatar || 'https://c.aichat.la/default-avatar.png'}
+                                style={{ borderRadius: 20 }}
+                                fit='cover'
+                                width={40}
+                                height={40}
+                            />
+                            <span className={styles.name}>{globalInfo?.name}</span>
+                            {/* <Button fill='none'>
                             <i className="icon iconfont icon-find1" />
                         </Button> */}
+                        </div>
                     </div>
                 </div>
             </Popup>

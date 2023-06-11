@@ -45,7 +45,7 @@ const Home: FC = () => {
     const history = useHistory();
 
     const [createPlayerVisible, setCreatePlayerVisible] = useState<boolean>(false);
-    const { globalInfo, setLoginVisible } = useContext(UserInfoContext);
+    const { globalInfo, setLoginVisible, leftExpandVisible, setLeftExpandVisible } = useContext(UserInfoContext);
 
     const [categoryInfo, setCategoryInfo] = useState<LabelRolePageVo[]>([]);
 
@@ -87,7 +87,7 @@ const Home: FC = () => {
         <div className={styles.homeWrap}>
 
             <div className={styles.headerWrap}>
-                <LeftExpand />
+                <LeftExpand visible={leftExpandVisible} setVisible={setLeftExpandVisible} />
                 <span className={styles.placeholder} />
                 <i
                     className={classnames("icon iconfont icon-yingchengka", styles.vipIcon)}

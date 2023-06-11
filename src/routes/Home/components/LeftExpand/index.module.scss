@@ -1,52 +1,111 @@
 .leftExpandIcon {
     font-size: 2.8rem;
 }
-.expandContent {
-    padding: 5rem 0 6.5rem 0 ;
-    width: 26rem;
-    height: 100%;
-    background-color: #fff;
-    overflow-y: scroll;
-    .title {
-        position: fixed;
-        left: 0;
-        top: 0;
-        padding: 0 2rem;
+
+.expandContentWrap {
+    height: 100vh;
+    border-right: 1px solid #dcdcdc;
+
+    .expandContent {
+        padding: 5rem 0 6.5rem 0;
         width: 26rem;
-        display: flex;
-        align-items: center;
-        height: 5rem;
-        font-size: 2.4rem;
-        color: #000;
-        z-index: 9;
+        height: 100%;
         background-color: #fff;
-    }
-    .line {
-        margin: 0;
-    }
-    .handle {
-        display: flex;
-        align-items: center;
-        padding: 0.8rem 1.5rem;
-        .friend {
-            flex: 1;
+        overflow-y: scroll;
+        box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.15);
+        z-index: 9;
+
+        .title {
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 0 2rem;
+            width: 26rem;
+            display: flex;
+            align-items: center;
+            height: 5rem;
+            font-size: 2.4rem;
+            color: #000;
+            z-index: 9;
+            background-color: #fff;
         }
-    }
-    .useInfo {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        // width: 100%;
-        padding: 1rem 1.2rem;
-        width: 26rem;
-        display: flex;
-        align-items: center;
-        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
-        z-index: 9;
-        background-color: #fff;
-        .name {
-            flex: 1;
-            padding: 1.6rem 1.5rem;
+
+        .line {
+            margin: 0;
+        }
+
+        .handle {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.6rem;
+
+            .friend {
+                flex: 1;
+                font-weight: bold;
+                // font-size: 1.6rem;
+            }
+
+            .handleBtn {
+                // --gap: 0.3rem;
+                font-size: 1.4rem;
+
+                display: flex;
+                align-items: center;
+
+                .handleBtnIcon {
+                    margin-right: 0.3rem;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+
+        .playerList {
+            padding: 0 0.8rem;
+            margin: 0.2rem 0;
+            --border-bottom: none;
+            --border-top: none;
+        }
+
+        .playerItem {
+
+            --border-inner: none;
+            padding-right: 1.8rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+            border-radius: 0.8rem;
+
+            &:hover {
+                background-color: rgba(105, 58, 244, 0.05);
+            }
+
+            &.active {
+                background-color: rgba(105, 58, 244, 0.05);
+            }
+        }
+
+        .desc {
+            font-size: 1.2rem;
+        }
+
+        .useInfo {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            // width: 100%;
+            padding: 1rem 1.2rem;
+            width: 26rem;
+            display: flex;
+            align-items: center;
+            // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+            z-index: 9;
+            background-color: #fff;
+            border-top: 1px solid rgb(230, 230, 230);
+
+            .name {
+                flex: 1;
+                padding: 1.6rem 1.5rem;
+            }
         }
     }
 }

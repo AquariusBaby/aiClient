@@ -35,7 +35,7 @@ function renderMarkdownToHTML(markdown: string) {
     return { __html: mdi.render(text) };
 }
 
-const Dialogue: FC<any> = ({ context, question, dateTime, avatar, index, handlePostQuestion }) => {
+const Dialogue: FC<any> = ({ context, question, dateTime, createdDate, avatar, index, handlePostQuestion }) => {
 
     // const actions: Action[] = [
     //     { key: 'copy', icon: <i className={classnames('icon iconfont icon-copy', styles.copyIcon)} />, text: <CopyToClipboard text={context} copyBtnText="复制" /> },
@@ -61,7 +61,7 @@ const Dialogue: FC<any> = ({ context, question, dateTime, avatar, index, handleP
             <div className={classnames(styles.dialogueWrap, styles.forUser)}>
                 <Image className={styles.avatar} src={'https://c.aichat.la/default-avatar.png'} />
                 <div className={styles.content}>
-                    <p className={styles.date}>{dateTime}</p>
+                    <p className={styles.date}>{dateTime | createdDate}</p>
                     {/* <p className={styles.desc}>{marked.parse(question)}</p> */}
                     <p className={classnames(styles.desc, 'markdown-body')} dangerouslySetInnerHTML={renderMarkdownToHTML(question)} />
                 </div>
@@ -69,7 +69,7 @@ const Dialogue: FC<any> = ({ context, question, dateTime, avatar, index, handleP
             <div className={classnames(styles.dialogueWrap, styles.forAi)}>
                 <Image className={styles.avatar} src={avatar} />
                 <div className={styles.content}>
-                    <p className={styles.date}>{dateTime}</p>
+                    <p className={styles.date}>{dateTime | createdDate}</p>
                     {/* <p className={styles.desc}>{context}</p> */}
                     <div className={styles.descWrap}>
                         <div className={classnames(styles.desc, 'markdown-body')} dangerouslySetInnerHTML={renderMarkdownToHTML(context)} />

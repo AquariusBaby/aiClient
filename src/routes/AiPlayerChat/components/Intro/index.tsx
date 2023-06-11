@@ -46,12 +46,14 @@ const Intro: FC<any> = ({ text, dateTime, avatar, setQuestionChat }) => {
             <Image className={styles.avatar} src={avatar} />
             <div className={styles.content}>
                 <p className={styles.date}>{dateTime}</p>
-                <div className={classnames(styles.desc, 'markdown-body')} dangerouslySetInnerHTML={renderMarkdownToHTML(introText)} />
-                {
-                    actions?.length > 0 && actions.map((item: string, index: number) =>
-                        <li className={styles.action} key={index} onClick={() => setQuestionChat(item)}>{item}</li>
-                    )
-                }
+                <div className={styles.text}>
+                    <div className={classnames(styles.desc, 'markdown-body')} dangerouslySetInnerHTML={renderMarkdownToHTML(introText)} />
+                    {
+                        actions?.length > 0 && actions.map((item: string, index: number) =>
+                            <li className={styles.action} key={index} onClick={() => setQuestionChat(item)}>{item}</li>
+                        )
+                    }
+                </div>
             </div>
         </div>
     );

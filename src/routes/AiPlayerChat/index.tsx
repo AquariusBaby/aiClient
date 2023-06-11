@@ -31,7 +31,7 @@ interface ChatHistoryItem {
 
 const defaultAiAvatar = 'https://qny-kaka-dev.kanzhua.com/FqQcnR0RTby3LqOrKlACTf7rPEpm?imageMogr2/thumbnail/120x/crop/120x120';
 
-let controller:any;
+let controller: any;
 
 const AiPlayerChat: FC = () => {
 
@@ -62,7 +62,7 @@ const AiPlayerChat: FC = () => {
 
 
     useEffect(() => {
-        if(!roleId) return;
+        if (!roleId) return;
 
         // 获取角色信息
         getRoleInfo({
@@ -79,7 +79,7 @@ const AiPlayerChat: FC = () => {
 
             // 第一次，则新建一个聊天框
             if (res?.data?.length === 0) {
-                
+
                 addNewChat({
                     roleId
                 }).then((res: any) => {
@@ -94,7 +94,7 @@ const AiPlayerChat: FC = () => {
                         setDialogueList?.([]);
                     }
                 })
-                
+
                 return;
             }
 
@@ -176,8 +176,8 @@ const AiPlayerChat: FC = () => {
         }
 
         const reader = response?.body?.getReader();
-		const decoder = new TextDecoder('utf-8');
-		let writingText = '';
+        const decoder = new TextDecoder('utf-8');
+        let writingText = '';
 
         while (true) {
             setIsReplaying(true);
@@ -185,10 +185,10 @@ const AiPlayerChat: FC = () => {
                 value,
                 done,
             }: any = await reader?.read();
-    
+
             if (value) {
                 let char = decoder.decode(value);
-                
+
                 if (char) {
                     writingText += char || '';
 
@@ -220,7 +220,7 @@ const AiPlayerChat: FC = () => {
 
         // 取消 Fetch 请求
         controller.abort();
-        
+
         // 刷新聊天框记录
         getChatHistory({
             roleId: roleId
@@ -241,7 +241,7 @@ const AiPlayerChat: FC = () => {
         const res: any = await addNewChat({
             roleId
         });
-        
+
         if (res?.code === 200) {
             setChatHistory?.((c: any[]) => [{
                 ...res?.data,
@@ -267,7 +267,7 @@ const AiPlayerChat: FC = () => {
                 <Header chatName={roleInfo?.name} roleId={roleId} setChatMessageVos={setChatMessageVos} roleInfo={roleInfo} />
                 <ul className={styles.chatContentWrap} ref={chatListRef}>
                     {/* 简介 */}
-                    <Intro text={roleInfo?.introduce} avatar={roleInfo?.imgUrl || defaultAiAvatar} dateTime={roleInfo.updateDate} setQuestionChat={handlePostQuestion} />
+                    <Intro text={roleInfo?.introduce} avatar={roleInfo?.imgUrl || defaultAiAvatar} dateTime={roleInfo.createdDate} setQuestionChat={handlePostQuestion} />
                     {/* 聊天历史记录 */}
                     {
                         chatMessageVos?.map((item: any, index: number) => <DialogueMultie key={index} {...item} avatar={roleInfo?.imgUrl || defaultAiAvatar} index={index} handlePostQuestion={handlePostQuestion} />)
@@ -276,7 +276,7 @@ const AiPlayerChat: FC = () => {
                     {
                         dialogueList.map((item: any, index: number) => <Dialogue key={index} {...item} avatar={roleInfo?.imgUrl || defaultAiAvatar} index={index} handlePostQuestion={handlePostQuestion} />)
                     }
-                    
+
                 </ul>
 
                 {

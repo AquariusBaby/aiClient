@@ -10,11 +10,15 @@ import HistoryTopic from './components/HistoryTopic'
 import { getChatHistory, getChatRecord } from '../../api/chatService';
 
 import ChatContext from "../../store/chatContext";
+import UserInfoContext from "../../store/userInfoContext";
 
 interface RightExpandProps {
     roleId?: string
     // setChatMessageVos: (v: any[]) => void;
     // roleInfo: any;
+    visible: boolean,
+    // setVisible?: (v: boolean) => void;
+    setVisible?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ChatHistoryItem {
@@ -27,15 +31,16 @@ interface ChatHistoryItem {
 
 const defaultAiAvatar = 'https://qny-kaka-dev.kanzhua.com/FqQcnR0RTby3LqOrKlACTf7rPEpm?imageMogr2/thumbnail/120x/crop/120x120';
 
-const RightExpand: FC<RightExpandProps> = ({ roleId }) => {
+const RightExpand: FC<RightExpandProps> = ({ roleId, visible, setVisible }) => {
 
-    const [visible, setVisible] = useState<boolean>(false);
+    // const [visible, setVisible] = useState<boolean>(false);
 
     const [createPlayerVisible, setCreatePlayerVisible] = useState<boolean>(false);
 
     // const [chatHistory, setChatHistory] = useState<ChatHistoryItem[]>([]); // 角色所有聊天框
     // const [selectedTopic, setSelectedTopic] = useState<number>(-1);
 
+    const { devicePlatform } = useContext(UserInfoContext);
     const { roleInfo, setChatMessageVos, setDialogueList, selectedTopic, setSelectedTopic } = useContext(ChatContext);
 
     // 获取聊天框列表
@@ -54,7 +59,7 @@ const RightExpand: FC<RightExpandProps> = ({ roleId }) => {
 
 
     function handleCreatePlayer() {
-        setVisible(false);
+        setVisible?.(false);
         setCreatePlayerVisible(true);
     }
 
@@ -73,12 +78,13 @@ const RightExpand: FC<RightExpandProps> = ({ roleId }) => {
 
     return (
         <>
-            <i className={classnames("icon iconfont icon-bofangjilu", styles.historyIcon)} onClick={() => setVisible(true)} />
+            <i className={classnames(`icon iconfont ${visible ? 'icon-category' : 'icon-bofangjilu'}`, styles.historyIcon)} onClick={() => setVisible?.(c => !c)} />
             <Popup
                 visible={visible}
                 onMaskClick={() => {
-                    setVisible(false)
+                    setVisible?.(false)
                 }}
+                mask={devicePlatform === 1}
                 position='right'
                 className={styles.roleInfoPopWrap}
             >

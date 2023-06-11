@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { SafeArea, Toast } from 'antd-mobile';
-import './App.css';
+import classnames from 'classnames';
+
+import styles from './App.module.scss';
 import RouterApp from './router';
+
+import { getDevice, getLayoutTypeByDeviceAndWidth } from './util';
 
 import './style/github-markdown.scss';
 import './style/highlight.scss';
@@ -32,6 +36,10 @@ function App() {
 
   const [globalInfo, setGlobalInfo] = useState<GlobalInfoProps>({});
   const [loginVisible, setLoginVisible] = useState<boolean>(false);
+  const [devicePlatform, setDevicePlatform] = useState<number>(() => getLayoutTypeByDeviceAndWidth());
+
+  const [leftExpandVisible, setLeftExpandVisible] = useState<boolean>(() => getLayoutTypeByDeviceAndWidth() >= 2);
+  const [rightExpandVisible, setRightExpandVisible] = useState<boolean>(() => getLayoutTypeByDeviceAndWidth() === 4);
 
   // 获取登录
   useEffect(() => {
@@ -55,18 +63,51 @@ function App() {
 
   }, []);
 
+  useEffect(() => {
+    const resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+
+    function resizeFn() {
+      const devicePlatform = getLayoutTypeByDeviceAndWidth();
+
+      setDevicePlatform(devicePlatform);
+    }
+
+    // resizeFn();
+
+    window.addEventListener(resizeEvt, resizeFn, false);
+
+    return () => window.removeEventListener(resizeEvt, resizeFn);
+  }, [])
+
   return (
-    <div className="App">
-      <UserInfoContext.Provider value={{
-        globalInfo,
-        setGlobalInfo,
-        loginVisible,
-        setLoginVisible,
-      }}>
-        {globalInfo?.finised && <RouterApp />}
-        <SafeArea position='bottom' />
-      </UserInfoContext.Provider>
-    </div>
+    <>
+      <div
+        className={
+          classnames(
+            styles.app,
+            {
+              [styles.leftPadding]: devicePlatform >= 3 && leftExpandVisible,
+              [styles.rightPadding]: devicePlatform >= 3 && rightExpandVisible,
+              // [styles.needPadding]: devicePlatform === 3,
+            }
+          )}
+      >
+        <UserInfoContext.Provider value={{
+          globalInfo,
+          setGlobalInfo,
+          loginVisible,
+          setLoginVisible,
+          devicePlatform,
+          leftExpandVisible,
+          setLeftExpandVisible,
+          rightExpandVisible,
+          setRightExpandVisible
+        }}>
+          {globalInfo?.finised && <RouterApp />}
+        </UserInfoContext.Provider>
+      </div>
+      <SafeArea position='bottom' />
+    </>
   );
 }
 

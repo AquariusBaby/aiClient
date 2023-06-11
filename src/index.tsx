@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {initialREM} from './init';
+import { initialREM } from './init';
+
+
 
 import * as dayjs from 'dayjs'
 // import * as isLeapYear from 'dayjs/plugin/isLeapYear' // 导入插件
 import 'dayjs/locale/zh-cn' // 导入本地化语言
+
 
 // 初始化rem
 initialREM();
