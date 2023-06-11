@@ -110,9 +110,9 @@ const Home: FC = () => {
                             setLoginVisible?.(true);
                             return;
                         }
-                        history.push('/createRole/create')
-                    }
-                    }
+                        setLeftExpandVisible?.(false);
+                        history.push('/createRole/create');
+                    }}
                 >
                     创建AI角色
                 </Button>

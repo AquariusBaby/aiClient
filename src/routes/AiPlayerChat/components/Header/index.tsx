@@ -14,20 +14,20 @@ import styles from './index.module.scss';
 
 
 interface HeaderProps {
-    chatName?: string
+    // chatName?: string
     roleId?: string;
     setChatMessageVos: (v: any[]) => void;
     roleInfo?: any;
 }
 
-const Header: FC<HeaderProps> = ({ chatName, roleId, setChatMessageVos, roleInfo }) => {
+const Header: FC<HeaderProps> = ({ roleId, setChatMessageVos, roleInfo }) => {
 
     const [visible, setVisible] = useState(false);
     const { globalInfo, leftExpandVisible, setLeftExpandVisible, rightExpandVisible, setRightExpandVisible } = useContext(UserInfoContext);
 
-    function share() {
-        setVisible(true);
-    }
+    useEffect(() => {
+        return () => setRightExpandVisible?.(false);
+    }, []);
 
     return (
         <>
@@ -37,7 +37,7 @@ const Header: FC<HeaderProps> = ({ chatName, roleId, setChatMessageVos, roleInfo
                 backArrow={false}
                 right={
                     <>
-                        <i className={classnames("icon iconfont icon-fenxiang", styles.shareIcon)} onClick={share} />
+                        <i className={classnames("icon iconfont icon-fenxiang", styles.shareIcon)} onClick={() => setVisible(true)} />
                         <RightExpand roleId={roleId} visible={rightExpandVisible} setVisible={setRightExpandVisible} />
                     </>
                 }
@@ -55,6 +55,7 @@ const Header: FC<HeaderProps> = ({ chatName, roleId, setChatMessageVos, roleInfo
                         <CopyToClipboard className={styles.copyBtn} text={`${window.location.origin}${window.location.pathname}?shareUserId=${globalInfo?.id}`} copyBtnText="复制链接" />
                     </>
                 }
+                getContainer={document.body}
             />
         </>
     );

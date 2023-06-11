@@ -38,8 +38,8 @@ function App() {
   const [loginVisible, setLoginVisible] = useState<boolean>(false);
   const [devicePlatform, setDevicePlatform] = useState<number>(() => getLayoutTypeByDeviceAndWidth());
 
-  const [leftExpandVisible, setLeftExpandVisible] = useState<boolean>(() => getLayoutTypeByDeviceAndWidth() >= 2);
-  const [rightExpandVisible, setRightExpandVisible] = useState<boolean>(() => getLayoutTypeByDeviceAndWidth() === 4);
+  const [leftExpandVisible, setLeftExpandVisible] = useState<boolean>(false);
+  const [rightExpandVisible, setRightExpandVisible] = useState<boolean>(false);
 
   // 获取登录
   useEffect(() => {
@@ -50,6 +50,7 @@ function App() {
           finised: true,
           ...(res.data || {})
         });
+        setLeftExpandVisible(() => getLayoutTypeByDeviceAndWidth() >= 2);
         return;
       }
 
@@ -90,7 +91,9 @@ function App() {
               [styles.rightPadding]: devicePlatform >= 3 && rightExpandVisible,
               // [styles.needPadding]: devicePlatform === 3,
             }
-          )}
+          )
+        }
+        id="app"
       >
         <UserInfoContext.Provider value={{
           globalInfo,

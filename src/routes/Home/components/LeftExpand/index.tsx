@@ -26,17 +26,21 @@ const LeftExpand: FC<LeftExpandProps> = ({ visible, setVisible }) => {
     const [createPlayerVisible, setCreatePlayerVisible] = useState<boolean>(false);
     const [playerList, setPlayerList] = useState<any[]>([]);
 
-    const { globalInfo = {}, setLoginVisible, devicePlatform } = useContext(UserInfoContext);
+    const { globalInfo = {}, setLoginVisible, devicePlatform, setLeftExpandVisible } = useContext(UserInfoContext);
 
-    const rootDom = document.getElementById('root')
+    const appDom = document.getElementById('app')
 
     useEffect(() => {
         globalInfo?.loggedIn &&
             getUserFriends().then((res: any) => {
                 if (res.code !== 200) return;
                 setPlayerList(res?.data || []);
-            })
-    }, [globalInfo?.loggedIn])
+            });
+    }, [globalInfo?.loggedIn]);
+
+    // useEffect(() => {
+    //     return () => setLeftExpandVisible?.(false);
+    // }, [])
 
     function handleCreatePlayer() {
         setVisible?.(false);
@@ -63,7 +67,7 @@ const LeftExpand: FC<LeftExpandProps> = ({ visible, setVisible }) => {
                     setVisible?.(false)
                 }}
                 position='left'
-            // getContainer={rootDom}
+            // getContainer={appDom}
             >
                 <div className={styles.expandContentWrap}>
                     <div className={styles.expandContent}>
@@ -71,7 +75,13 @@ const LeftExpand: FC<LeftExpandProps> = ({ visible, setVisible }) => {
                         <Divider className={styles.line} />
                         <div className={styles.handle}>
                             <span className={styles.friend}>AI 好友</span>
-                            <Button fill='none' onClick={() => history.push('/createRole/create')}>
+                            <Button
+                                fill='none'
+                                onClick={() => {
+                                    history.push('/createRole/create');
+                                    setLeftExpandVisible?.(false);
+                                }}
+                            >
                                 <div className={styles.handleBtn}>
                                     <i className={classnames("icon iconfont icon-zengjia", styles.handleBtnIcon)} />
                                     <span>创建</span>

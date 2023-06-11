@@ -32,6 +32,7 @@ const Login: FC<{ updateCategoryInfo: () => void, shareUserId?: string }> = ({ u
                         :
                         <EditForm setIsEditPwd={setIsEditPwd} />
                 }
+                getContainer={document.body}
             />
         </>
     )

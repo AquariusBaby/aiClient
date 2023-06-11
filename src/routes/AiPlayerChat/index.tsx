@@ -1,11 +1,8 @@
 import React, { FC, useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router'
 import { Button, TextArea, Space, Divider } from 'antd-mobile'
-// import { FileWrongOutline, TravelOutline } from 'antd-mobile-icons'
 import classnames from 'classnames';
-// import axios from 'axios';
 import dayjs from 'dayjs';
-// import fetch from 'isomorphic-fetch';
 
 import GConfig from '../../config';
 
@@ -20,6 +17,7 @@ import { getChatHistory, getChatRecord, addNewChat } from '../../api/chatService
 import { getRoleInfo } from '../../api/roleService';
 
 import ChatContext from '../../store/chatContext';
+// import UserInfoContext from '../../store/userInfoContext';
 
 interface ChatHistoryItem {
     name: string;
@@ -118,8 +116,11 @@ const AiPlayerChat: FC = () => {
 
     useEffect(() => {
         // 初始化，滚动到底部
-        chatMessageVos?.length > 0 && chatListRef?.current?.scrollIntoView(false);
-    }, [chatMessageVos])
+        console.log(chatMessageVos?.length > 0)
+        chatMessageVos.length > 0 && setTimeout(() => {
+            chatListRef?.current?.scrollIntoView(false);
+        }, 500);
+    }, [chatMessageVos.length])
 
     // 发起问答
     async function handlePostQuestion(questionChatMessage: string, index?: number, source?: number) {
@@ -264,20 +265,21 @@ const AiPlayerChat: FC = () => {
             setSelectedTopic
         }}>
             <div className={styles.chatPageWrap}>
-                <Header chatName={roleInfo?.name} roleId={roleId} setChatMessageVos={setChatMessageVos} roleInfo={roleInfo} />
-                <ul className={styles.chatContentWrap} ref={chatListRef}>
-                    {/* 简介 */}
-                    <Intro text={roleInfo?.introduce} avatar={roleInfo?.imgUrl || defaultAiAvatar} dateTime={roleInfo.createdDate} setQuestionChat={handlePostQuestion} />
-                    {/* 聊天历史记录 */}
-                    {
-                        chatMessageVos?.map((item: any, index: number) => <DialogueMultie key={index} {...item} avatar={roleInfo?.imgUrl || defaultAiAvatar} index={index} handlePostQuestion={handlePostQuestion} />)
-                    }
-                    {/* 新增的聊天记录 */}
-                    {
-                        dialogueList.map((item: any, index: number) => <Dialogue key={index} {...item} avatar={roleInfo?.imgUrl || defaultAiAvatar} index={index} handlePostQuestion={handlePostQuestion} />)
-                    }
-
-                </ul>
+                <Header roleId={roleId} setChatMessageVos={setChatMessageVos} roleInfo={roleInfo} />
+                <div className={styles.chatContentWrap}>
+                    <ul className={styles.chatContentList} ref={chatListRef}>
+                        {/* 简介 */}
+                        <Intro text={roleInfo?.introduce} avatar={roleInfo?.imgUrl || defaultAiAvatar} dateTime={roleInfo.createdDate} setQuestionChat={handlePostQuestion} />
+                        {/* 聊天历史记录 */}
+                        {
+                            chatMessageVos?.map((item: any, index: number) => <DialogueMultie key={index} {...item} avatar={roleInfo?.imgUrl || defaultAiAvatar} index={index} handlePostQuestion={handlePostQuestion} />)
+                        }
+                        {/* 新增的聊天记录 */}
+                        {
+                            dialogueList.map((item: any, index: number) => <Dialogue key={index} {...item} avatar={roleInfo?.imgUrl || defaultAiAvatar} index={index} handlePostQuestion={handlePostQuestion} />)
+                        }
+                    </ul>
+                </div>
 
                 {
                     isReplaying &&

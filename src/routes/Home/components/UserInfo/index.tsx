@@ -46,6 +46,7 @@ const UserInfo: FC<any> = ({ userInfo }) => {
                         </Tabs>
                     </>
                 }
+                getContainer={document.body}
             />
         </>
     );

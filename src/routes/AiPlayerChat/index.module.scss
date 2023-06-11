@@ -2,15 +2,15 @@
     position: relative;
     height: 100vh;
 
-    // padding: 4.8rem 0 5.8rem 0;
-    // height: 100vh;
     .chatContentWrap {
         padding: 5.6rem 0.8rem 10.6rem 0.8rem;
-        // padding: 0.8rem;
         background-color: #fff;
         height: 100vh;
-        // height: 100%;
         overflow-y: scroll;
+
+        .chatContentList {
+            padding-bottom: 6.1rem;
+        }
     }
 }
 
@@ -19,7 +19,6 @@
     left: 50%;
     bottom: 7rem;
     transform: translateX(-50%);
-    // background-color: ;
 }
 
 .bottomWrap {
@@ -55,10 +54,7 @@
             position: relative;
             flex: 1;
 
-            // min-height: 4rem;
-            // font-size: 1.5rem;
             >textarea {
-                // min-height: 4rem !important;
                 font-size: 1.5rem;
             }
         }
@@ -68,8 +64,6 @@
         }
 
         .sendBtn {
-            // width: 2rem;
-            // height: 2rem;
             font-size: 2.2rem;
             color: #693af4;
         }
